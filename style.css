@@ -1,7 +1,8 @@
 .container {
     display: flex;
     justify-content: center;
-    width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 form {
@@ -20,7 +21,7 @@ form {
     flex-direction: column;
     align-items: start;
 }
-.importend {
+.im {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -32,7 +33,7 @@ form {
     border: 1px solid grey;
     border-radius: 4px;
 }
-.importend input {
+.im input {
     height: 30px;
     width: 300px;
     border: 2px solid rgba(66, 0, 255, 1);
@@ -43,13 +44,13 @@ form {
     margin-bottom: 3px;
     font-size: 14px;
 }
-.importend p {
+.im p {
     margin-bottom: 3px;
     font-size: 14px;
     color: rgba(66, 0, 255, 1);
 }
 
-.importend span {
+.im span {
     font-size: 10px;
 }
 

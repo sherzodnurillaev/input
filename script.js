@@ -1,63 +1,86 @@
 const form = document.forms[0]
-const inps = document.querySelectorAll('.inp input')
-const spas = document.querySelectorAll('.importend span')
-const ps = document.querySelectorAll('.importend p')
-const impors = document.querySelectorAll('.importend input')
-const er = document.querySelector('.error')
+const inputs = document.querySelectorAll('.importend')
+const spans = document.querySelectorAll('.im span')
+const topPs = document.querySelectorAll('.im p')
 const suc = document.querySelector('.success')
+const er = document.querySelector('.error')
 
+const regEx = {
+    name: /^[A-Za-z\s.'-]+$/,
+    age: /^(?:1[0-1]\d|120|[1-9]\d|\d)$/,
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    text: /^.{10,50}$/,
+}
 
 form.onsubmit = (e) => {
     e.preventDefault()
-    impors.forEach(impor => {
-                    if (impor.value.length > 0) {
-                        impo()
-                        spas.forEach(spa => {
-                            ps.forEach(p => {
-                                spa.style.color = 'black'
-                                p.style.color = 'rgba(66, 0, 255, 1)'
-                                impor.style.border = '2px solid rgba(66, 0, 255, 1)'
-                            })
-                        })
-                    } else if (impor.value.length === 0) {
-                        spas.forEach(spa => {
-                            ps.forEach(p => {
-                                spa.style.color = 'red'
-                                p.style.color = 'red'
-                                impor.style.border = '2px solid red'
-                            })
-                        })
-                    }  
 
-        // console.log(impor.value);
-            if (er.innerHTML > 7 || suc.innerHTML > 7) {
-                tot()
-            } else if (impor.value.length == 0) {
-                er.innerHTML++
-            } else if (impor.value.length > 0) {
-                suc.innerHTML++
-            }
-    })
-}
-
-function tot() {
-    suc.innerHTML = 0
-    er.innerHTML = 0
-}
-
-function impo() {
     let obj = {}
-    let fm = new FormData(form)
-    fm.forEach((item, key) => {
+
+    let sen = new FormData(form)
+    sen.forEach((item, key) => {
         obj[key] = item
+        
     })
-    console.log(obj);
+
+    let valInp = true;
+
+    inputs.forEach(input => {
+
+        if (input.value === '') {
+
+            valInp = false;
+            regInput();
+        }
+    });
+
+    if (valInp) {
+        console.log(obj);
+        regInput();
+    }
+
+    total()
+
 }
 
-// let fm = new FormData(form)
+function regInput() {
+    inputs.forEach((input, i) => {
 
-//             fm.forEach((item, key) => {
-                
-//                 obj[key] = item
-//             })
-//             console.log(obj);
+        let key = input.getAttribute('name')
+
+        if (regEx[key].test(input.value)) {
+            
+            spans.forEach((span, s) => {
+                if (i === s) {
+                    span.style.color = 'black'
+                }
+            })
+
+            topPs.forEach((par, p) => {
+                if (i === p) {
+
+                    par.style.color = 'rgba(66, 0, 255, 1)'
+                }
+            })
+
+            input.style.border = '2px solid rgba(66, 0, 255, 1)'
+
+        } else {
+            input.style.border = '2px solid red'
+            spans.forEach((span, s) => {
+                if (i === s) {
+                    span.style.color = 'red'
+                }
+            })
+            topPs.forEach((par, p) => {
+                if (i === p) {
+                    par.style.color = 'red'
+                }
+            })
+        }
+    })
+}
+
+function total() {
+
+}
