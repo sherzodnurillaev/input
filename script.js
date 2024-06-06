@@ -93,7 +93,7 @@ function regInput() {
             reg = false;
         }
 
-        total(reg);
+        total();
     })
 }
 
