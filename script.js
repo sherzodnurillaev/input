@@ -2,6 +2,7 @@ const form = document.forms[0]
 const inputs = document.querySelectorAll('.importend')
 const spans = document.querySelectorAll('.im span')
 const topPs = document.querySelectorAll('.im p')
+const imgs = document.querySelectorAll('.ima img')
 const suc = document.querySelector('.success')
 const er = document.querySelector('.error')
 
@@ -26,9 +27,7 @@ form.onsubmit = (e) => {
     let valInp = true;
 
     inputs.forEach(input => {
-
         if (input.value === '') {
-
             valInp = false;
             regInput();
         }
@@ -53,6 +52,7 @@ function regInput() {
             spans.forEach((span, s) => {
                 if (i === s) {
                     span.style.color = 'black'
+                    span.innerHTML = `Need to fill`
                 }
             })
 
@@ -60,6 +60,13 @@ function regInput() {
                 if (i === p) {
 
                     par.style.color = 'rgba(66, 0, 255, 1)'
+                    
+                }
+            })
+
+            imgs.forEach((imgs, im) => {
+                if (i === im) {
+                    imgs.style.display = 'none'
                 }
             })
 
@@ -70,6 +77,7 @@ function regInput() {
             spans.forEach((span, s) => {
                 if (i === s) {
                     span.style.color = 'red'
+                    span.innerHTML = `Need to fill ${key}`
                 }
             })
             topPs.forEach((par, p) => {
@@ -77,10 +85,18 @@ function regInput() {
                     par.style.color = 'red'
                 }
             })
+            imgs.forEach((imgs, im) => {
+                if (i === im) {
+                    imgs.style.display = 'block'
+                }
+            })
+            reg = false;
         }
+
+        total(reg);
     })
 }
 
 function total() {
-
+    
 }

@@ -16,6 +16,16 @@ form {
     justify-content: center;
 }
 
+.ima {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ima img {
+    display: none;
+}
+
 .inp {
     display: flex;
     flex-direction: column;
